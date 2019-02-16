@@ -11,6 +11,7 @@ import java.util.logging.Logger;
  *
  * @author Alexander Styagov, SPbSTU
  */
+
 public class Lab1 {
 
     private static final int ARGUMENTS_COUNT = 3;
