@@ -1,4 +1,4 @@
-package ru.deledzis.spbstu.labs;
+package ru.deledzis.spbstu.labs.lab1;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  * @author Alexander Styagov, SPbSTU
  */
 
-public class Lab1 {
+public class Main {
 
     private static final int ARGUMENTS_COUNT = 3;
 
