@@ -1,22 +1,23 @@
 package ru.deledzis.spbstu.java.labs.utils
 
-import java.util.*
 import java.util.concurrent.ThreadLocalRandom
 import java.util.logging.Level
 import java.util.logging.Logger
 
+
 /**
- * An auxiliary function to log any message with any level of importance and print this message to user
+ * An auxiliary function to log any message with any level of importance and log this message to user
  *
  * @param message is a String that will be logged with [logLevel] and printed to user's console
  * @param logLevel level of importance of log message
  * @param exitCode is an error code that will be used to exit the application
  */
 private fun logAny(message: String, logLevel: Level, exitCode: Int = 0) {
-    Logger.getGlobal().log(logLevel, message)
+    Logger.getAnonymousLogger().log(logLevel, message)
 
-    if (logLevel != Level.INFO) {
-        println(message)
+    when(logLevel) {
+        Level.FINEST    -> if (isDebug()) println(message)
+        else            -> println(message)
     }
 
     if (exitCode != 0) {
@@ -25,25 +26,25 @@ private fun logAny(message: String, logLevel: Level, exitCode: Int = 0) {
 }
 
 /**
- * An auxiliary function to log fine message and print it to user
+ * An auxiliary function to log fine message and log it to user
  *
  * @param message is a String that will be logged with @{link Level.FINE} level and printed to user's console
  */
-fun print(message: String) {
+fun log(message: String) {
     logAny(message, Level.FINEST)
 }
 
 /**
- * An auxiliary function to log fine message and print it to user
+ * An auxiliary function to log fine message and log it to user
  *
  * @param message is a String that will be logged with @{link Level.INFO} level and printed to user's console
  */
-fun logWarning(message: String) {
-    logAny(message, Level.INFO)
+fun print(message: String) {
+    logAny(message, Level.FINE)
 }
 
 /**
- * An auxiliary function to log error and print message to user
+ * An auxiliary function to log error and log message to user
  *
  * @param message is a String that will be logged with @{link Level.WARNING} level and printed to user's console
  * @param exitCode is an error code that will be used to exit the application
@@ -59,14 +60,30 @@ fun logError(message: String, exitCode: Int) {
  * @param max is a biggest available integer
  * @return random integer between [min] and [max] inclusively
  */
-fun getRandomIntInRange(min: Int, max: Int): Int {
+fun getRandomInt(min: Int, max: Int): Int {
     return ThreadLocalRandom.current().nextInt(min, max + 1)
 }
 
+
+fun isDebug() = true
+
 /***** RESOURCES  */
-object ResourcesAccessor {
+/*object ResourcesAccessor {
 
-    private const val RESOURCES_BUNDLE_NAME = "resources"
+    private const val RESOURCES_BUNDLE_NAME = "strings"
     val resources = ResourceBundle.getBundle(RESOURCES_BUNDLE_NAME, Locale.getDefault())!!
+    /*fun getPr(prop: String): String {
+        val fis: FileInputStream
+        val property = Properties()
 
-}
+        return try {
+            fis = FileInputStream(RESOURCES_BUNDLE_NAME)
+            property.load(fis)
+
+            property.getProperty(prop)
+        } catch (e: IOException) {
+            System.err.println("ОШИБКА: Файл свойств отсуствует!")
+            "error"
+        }
+    }*/
+}*/

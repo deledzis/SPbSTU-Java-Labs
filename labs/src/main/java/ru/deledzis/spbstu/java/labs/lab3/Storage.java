@@ -1,9 +1,5 @@
 package ru.deledzis.spbstu.java.labs.lab3;
 
-import ru.deledzis.spbstu.java.labs.utils.ResourcesAccessor;
-
-import java.util.ResourceBundle;
-
 import static ru.deledzis.spbstu.java.labs.lab3.Main.ERROR_CODE_INTERRUPTED_EXC;
 import static ru.deledzis.spbstu.java.labs.utils.UtilsKt.*;
 
@@ -19,10 +15,14 @@ class Storage {
     private static final int MIN_AVAILABLE_VALUE = 0;
     private static final int MAX_AVAILABLE_VALUE = 100;
 
+    private static final int STEPS = 100;
+
     // this default value is used to detect unset state of field
     private int mNumber = NOT_SET;
 
-    private static final ResourceBundle mResources = ResourcesAccessor.INSTANCE.getResources();
+    private int mCurrentStep = 0;
+
+    //private static final ResourceBundle mResources = ResourcesAccessor.INSTANCE.getResources();
 
     /**
      * a synchronized method used to set a [mNumber] field if it's not set. If it is set (differs from -1),
@@ -45,8 +45,8 @@ class Storage {
         if (value >= MIN_AVAILABLE_VALUE && value <= MAX_AVAILABLE_VALUE) {
             mNumber = value;
 
-            print(mResources.getString("producer") + " " + Thread.currentThread().getName() + " " +
-                            mResources.getString("prod_good") + " " + mNumber);
+            log("Producer" + " " + Thread.currentThread().getName() + " " +
+                            "produced number" + " " + mNumber);
             // uncomment to see how consumer is waiting for producer to notify about new item added
             /*try {
                 sleep(1000 * 10); // 10 sec
@@ -54,10 +54,10 @@ class Storage {
                 e.printStackTrace();
             }*/
             notify();
-        } else {
-            logWarning(mResources.getString("producer") + " " + Thread.currentThread().getName() + " " +
-                    mResources.getString("prod_bad") + " " + value);
-        }
+        } /*else {
+            print("Producer" + " " + getThreadName() + " " +
+                    "produced bad number" + " " + value);
+        }*/
     }
 
     /**
@@ -76,11 +76,20 @@ class Storage {
             }
         }
         // field is produced by now, can consume
-        System.out.println(mResources.getString("consumer") + " " + Thread.currentThread().getName() + " " +
-                mResources.getString("cons") + " " +  mNumber);
+        System.out.println("Consumer" + " " + getThreadName() + " " +
+                "consumed number" + " " +  mNumber);
         // resetting field
         mNumber = NOT_SET;
+        mCurrentStep++;
         // awake blocked awaiting thread(s) on this object's monitor
         notify();
+    }
+
+    synchronized private String getThreadName() {
+        return Thread.currentThread().getName();
+    }
+
+    boolean isRunning() {
+        return mCurrentStep != STEPS;
     }
 }

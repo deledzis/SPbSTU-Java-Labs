@@ -1,13 +1,10 @@
 package ru.deledzis.spbstu.java.labs.lab1;
 
-import ru.deledzis.spbstu.java.labs.utils.ResourcesAccessor;
-
 import java.util.HashMap;
 import java.util.Map;
-import java.util.ResourceBundle;
 
 import static ru.deledzis.spbstu.java.labs.utils.UtilsKt.logError;
-import static ru.deledzis.spbstu.java.labs.utils.UtilsKt.print;
+import static ru.deledzis.spbstu.java.labs.utils.UtilsKt.log;
 
 /**
  * Implementation of the first lab, 6th variant.
@@ -26,25 +23,26 @@ public class Main {
     /***** OTHERS *****/
     private static final int ARGUMENTS_COUNT            = 3;
 
-    private static final ResourceBundle mResources = ResourcesAccessor.INSTANCE.getResources();
+    //private static final ResourceBundle mResources      = ResourcesAccessor.INSTANCE.getResources();
 
     private static final Map mOperatorsAndOperationsMap = new HashMap<Character, String>() {{
-        put('+', mResources.getString("sum"));
-        put('-', mResources.getString("diff"));
-        put('x', mResources.getString("product"));
-        put('/', mResources.getString("quot"));
+        put('+', "Sum");
+        put('-', "Difference");
+        put('x', "Product");
+        put('/', "Quotient");
     }};
 
     public static void main(String[] args) {
         // initial check the count of arguments given
         if (args.length != ARGUMENTS_COUNT) {
-            logError(mResources.getString("error_args"), ERROR_CODE_WRONG_ARGUMENTS);
+            logError("wrong arguments. Use following format: [operand] [operator] [operand]",
+                    ERROR_CODE_WRONG_ARGUMENTS);
         }
 
         // printing entire list of enter arguments
-        print(mResources.getString("arg_set"));
+        log("Given next arguments set:");
         for (String argument : args) {
-            print("[ " + argument + " ]");
+            log("[ " + argument + " ]");
         }
 
         // parsing operands
@@ -55,7 +53,7 @@ public class Main {
             firstOperand = Double.parseDouble(args[0]);
             secondOperand = Double.parseDouble(args[2]);
         } catch (NumberFormatException ex) {
-            logError(mResources.getString("error_operands"), ERROR_CODE_WRONG_OPERANDS);
+            logError("wrong arguments. Operands must be integer or float numbers", ERROR_CODE_WRONG_OPERANDS);
         }
 
         // now can check the operator
@@ -70,12 +68,12 @@ public class Main {
             }
 
             // everything's fine, printing results
-            print(mResources.getString("op1") + firstOperand);
-            print(mResources.getString("oper") + operator);
-            print(mResources.getString("op2") + secondOperand);
-            print(mOperatorsAndOperationsMap.get(operator) + " = " + result);
+            log("Operand 1: " + firstOperand);
+            log("Operator: " + operator);
+            log("Operand 2: " + secondOperand);
+            log(mOperatorsAndOperationsMap.get(operator) + " = " + result);
         } else {
-            logError(mResources.getString("error_operator"), ERROR_CODE_WRONG_OPERATOR);
+            logError("wrong operator. Should be '+', '-', 'x' or '/'", ERROR_CODE_WRONG_OPERATOR);
         }
     }
 
@@ -94,7 +92,7 @@ public class Main {
             case '-': return first - second; // diff
             case 'x': return first * second; // product
             case '/': return first / second; // quotient
-            default: throw new WrongOperatorException(mResources.getString("error_operator"));
+            default: throw new WrongOperatorException("wrong operator. Should be '+', '-', 'x' or '/'");
         }
     }
 

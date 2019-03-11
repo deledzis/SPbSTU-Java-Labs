@@ -1,9 +1,5 @@
 package ru.deledzis.spbstu.java.labs.lab2;
 
-import ru.deledzis.spbstu.java.labs.utils.ResourcesAccessor;
-
-import java.util.ResourceBundle;
-
 import static ru.deledzis.spbstu.java.labs.utils.UtilsKt.*;
 
 /**
@@ -25,13 +21,22 @@ public class Main {
     private static final int TOY                        = 3;
     private static final int PICTURE                    = 4;
 
-    private static final ResourceBundle mResources = ResourcesAccessor.INSTANCE.getResources();
+    /***** OTHERS *****/
+    private static final int ARGUMENTS_COUNT            = 1;
+
+    //private static final ResourceBundle mResources = ResourcesAccessor.INSTANCE.getResources();
 
     public static void main(String[] args) {
+        // initial check the count of arguments given
+        if (args.length != ARGUMENTS_COUNT) {
+            logError("wrong arguments. Use following format: [operand] [operator] [operand]",
+                    ERROR_CODE_WRONG_ARGUMENT);
+        }
+
         // printing entire list of enter arguments
-        print(mResources.getString("arg_set"));
+        log("Given next arguments set:");
         for (String argument : args) {
-            print("[ " + argument + " ]");
+            log("[ " + argument + " ]");
         }
 
         // parsing array size from commandline arguments
@@ -39,18 +44,18 @@ public class Main {
         try {
             arraySize = Integer.parseInt(args[0]);
         } catch (NumberFormatException ex) {
-            logError(mResources.getString("error_argument"), ERROR_CODE_WRONG_ARGUMENT);
+            logError("wrong argument. Should be an integer", ERROR_CODE_WRONG_ARGUMENT);
         }
 
         // this will be used to store interesting us entities from array
-        StringBuilder implementsPresentProducts = new StringBuilder(mResources.getString("prod_impl_present"))
+        StringBuilder implementsPresentProducts = new StringBuilder("Products that implements Present interface:")
                 .append("\n");
 
         Product[] products = new Product[arraySize];
         for (int i = 0; i < products.length; i++) {
             Product product = null;
             // the result class of each product in array will be chosen by the great random
-            switch (getRandomIntInRange(1, 4)) {
+            switch (getRandomInt(1, 4)) {
                 case BOOK:
                     product = new Book();
                     break;
@@ -64,7 +69,7 @@ public class Main {
                     product = new Picture();
                     break;
                 default:
-                    logError(mResources.getString("error_random"), ERROR_CODE_UNKNOWN);
+                    logError("some internal error in random function work", ERROR_CODE_UNKNOWN);
                     break;
             }
             // at this point, if product is null, program would be terminated already
@@ -74,13 +79,13 @@ public class Main {
                 // instantly executing method
                 ((Present) product).itCanBePresented();
                 // but not instantly printing its name, only storing in variable
-                implementsPresentProducts.append(mResources.getString("prod")).append(i).append(" ")
-                        .append(mResources.getString("is_a")).append(" ").append(product.whoAmI()).append('\n');
+                implementsPresentProducts.append("Product #").append(i).append(" ")
+                        .append("is a").append(" ").append(product.whoAmI()).append('\n');
             }
             products[i] = product;
-            print(mResources.getString("prod") + i + " " + mResources.getString("is_a") +  " " + product.whoAmI());
+            log("Product #" + i + " " + "is a" +  " " + product.whoAmI());
         }
 
-        print(implementsPresentProducts.toString());
+        log(implementsPresentProducts.toString());
     }
 }

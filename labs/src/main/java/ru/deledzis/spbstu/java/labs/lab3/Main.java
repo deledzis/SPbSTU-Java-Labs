@@ -12,16 +12,23 @@ public class Main {
     /***** ERRORS *****/
     static final int ERROR_CODE_INTERRUPTED_EXC = 1;
 
-    /***** OTHERS *****/
-    static final int LOOPS_COUNT = 10;
-
     public static void main(String[] args) {
         // class with shared field
         Storage storage = new Storage();
-        Producer producer = new Producer(storage);
-        Consumer consumer = new Consumer(storage);
+        Thread producer = new Thread(new Producer(storage));
+        Thread consumer = new Thread(new Consumer(storage));
 
-        new Thread(producer).start();
-        new Thread(consumer).start();
+        producer.start();
+        consumer.start();
+
+        /*try
+        {
+            producer.join();
+            consumer.join();
+        }
+        catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        }*/
     }
 }
