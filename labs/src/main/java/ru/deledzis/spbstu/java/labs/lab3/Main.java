@@ -8,27 +8,13 @@ package ru.deledzis.spbstu.java.labs.lab3;
  */
 
 public class Main {
-
-    /***** ERRORS *****/
-    static final int ERROR_CODE_INTERRUPTED_EXC = 1;
+    private static final int STEPS = 5;
 
     public static void main(String[] args) {
-        // class with shared field
-        Storage storage = new Storage();
-        Thread producer = new Thread(new Producer(storage));
-        Thread consumer = new Thread(new Consumer(storage));
+        Producer producer = new Producer(STEPS);
+        Consumer consumer = new Consumer(producer);
 
         producer.start();
         consumer.start();
-
-        /*try
-        {
-            producer.join();
-            consumer.join();
-        }
-        catch (InterruptedException e)
-        {
-            e.printStackTrace();
-        }*/
     }
 }

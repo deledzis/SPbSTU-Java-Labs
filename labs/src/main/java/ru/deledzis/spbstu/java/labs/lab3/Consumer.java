@@ -1,26 +1,32 @@
 package ru.deledzis.spbstu.java.labs.lab3;
 
+import static ru.deledzis.spbstu.java.labs.utils.UtilsKt.log;
+
 /**
  * [Runnable] interface implementer working as a Consumer in a Producer-Consumer multithreading pattern
  */
-public class Consumer implements Runnable {
+public class Consumer extends Thread {
 
-    private Storage mStorage;
+    private final Producer mProducer;
 
-    Consumer(Storage storage) {
-        this.mStorage = storage;
+    Consumer(Producer producer) {
+        this.mProducer = producer;
     }
 
     @Override
     public void run() {
-        // for finite work
-        while (mStorage.isRunning()) {
-            mStorage.consume();
+        while (!mProducer.isFinish()) {
+            synchronized (mProducer) {
+                int value = Storage.getNumber();
+                log("Consumer" + " " + Thread.currentThread().getName() + " " +
+                        "consumed number" + " " + value);
+                mProducer.notify();
+                try {
+                    mProducer.wait();
+                } catch (InterruptedException e) {
+                    e.getMessage();
+                }
+            }
         }
-
-        // for infinite work
-        /*while(true) {
-            mStorage.consume();
-        }*/
     }
 }
