@@ -1,6 +1,6 @@
-package ru.deledzis.spbstu.labs;
+package ru.deledzis.spbstu.java.labs.lab2;
 
-import com.sun.istack.internal.NotNull;
+import org.jetbrains.annotations.NotNull;
 
 public interface Present extends Product {
     @NotNull

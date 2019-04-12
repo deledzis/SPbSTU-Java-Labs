@@ -1,12 +1,16 @@
-package ru.deledzis.spbstu.labs;
+package ru.deledzis.spbstu.java.labs.lab2;
+
+import org.jetbrains.annotations.NotNull;
 
 public class Picture implements Present {
 
+    @NotNull
     @Override
     public String itCanBePresented() {
-        return "yes";
+        return "Yes";
     }
 
+    @NotNull
     @Override
     public String whoAmI() {
         return "Picture";
