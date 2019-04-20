@@ -43,13 +43,11 @@ public class Main {
         WorkingThread[] threads = new WorkingThread[threadsNumber];
 
         for (int i = 0; i < threadsNumber; i++) {
-            // we will lock every current thread on the previous one
             threads[i] = new WorkingThread(stringsNumber);
             if (i > 0) {
                 threads[i].setLock(threads[i - 1]);
             }
         }
-        // locking first thread on the last thread
         threads[0].setLock(threads[threadsNumber - 1]);
         threads[0].setFirst();
         threads[threadsNumber - 1].setLast();
@@ -60,8 +58,6 @@ public class Main {
         }
 
         for (int i = threadsNumber; i > 0; i--) {
-            log("[" + mainThreads[i - 1].getName() + "] Creating thread");
-
             mainThreads[i - 1].start();
         }
     }

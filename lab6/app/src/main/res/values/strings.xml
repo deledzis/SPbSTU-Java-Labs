@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Test</string>
+    <string name="click_somewhere_to_draw_shape">Click somewhere to draw shape!</string>
+    <string name="clear_screen">Clear Screen</string>
+</resources>
