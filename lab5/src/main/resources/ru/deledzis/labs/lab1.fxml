@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="200.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.deledzis.labs.lab1.Lab1Controller">
+    <Label layoutX="149.0" layoutY="23.0" text="Лабораторная работа №1">
+        <font>
+          <Font name="Lato Black" size="18.0" />
+        </font>
+    </Label>
+    <TextField fx:id="firstArgText" layoutX="30.0" layoutY="80.0" prefHeight="30.0" prefWidth="100.0" promptText="1-й аргумент">
+        <font>
+            <Font name="Lato Regular" size="14.0" />
+        </font>
+    </TextField>
+    <ChoiceBox fx:id="operatorChoiceBox" layoutX="140.0" layoutY="80.0" prefHeight="30.0" prefWidth="60.0" />
+    <TextField fx:id="secondArgText" layoutX="210.0" layoutY="80.0" prefHeight="30.0" prefWidth="100.0" promptText="2-й аргумент">
+        <font>
+            <Font name="Lato Regular" size="14.0" />
+        </font>
+    </TextField>
+    <Label layoutX="316.0" layoutY="85.0" text="=">
+        <font>
+            <Font name="Lato Regular" size="16.0" />
+        </font>
+    </Label>
+    <TextField fx:id="resultText" editable="false" layoutX="330.0" layoutY="80.0" prefHeight="30.0" prefWidth="150.0" promptText="Результат">
+        <font>
+            <Font name="Lato Regular" size="14.0" />
+        </font>
+    </TextField>
+    <Button fx:id="calculateButton" disable="true" layoutX="211.0" layoutY="154.0" mnemonicParsing="false" onAction="#onCalculateButtonClicked" text="Посчитать">
+        <font>
+            <Font name="Lato Regular" size="16.0" />
+        </font>
+    </Button>
+    <Button fx:id="backButton" cancelButton="true" layoutX="14.0" layoutY="9.0" mnemonicParsing="false" onAction="#onBackButtonClicked" text="←" textAlignment="CENTER">
+      <font>
+         <Font name="Lato Light Italic" size="14.0" />
+      </font>
+   </Button>
+   <Line fx:id="errorFirstLine" endX="130.0" endY="115.0" startX="30.0" startY="115.0" stroke="#d50000" visible="false" />
+   <Label fx:id="errorFirstDescriptionLabel" layoutX="30.0" layoutY="119.0" text="Неверный аргумент 1: должно быть число" textFill="#d50000" visible="false" />
+   <Line fx:id="errorSecondLine" endX="310.0" endY="115.0" startX="210.0" startY="115.0" stroke="#d50000" visible="false" />
+    <Label fx:id="errorSecondDescriptionLabel" layoutX="30.0" layoutY="119.0" text="Неверный аргумент 2: должно быть число" textFill="#d50000" visible="false" />
+</AnchorPane>
