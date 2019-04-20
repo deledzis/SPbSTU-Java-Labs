@@ -2,9 +2,6 @@ package ru.deledzis.spbstu.java.labs.lab3;
 
 import static ru.deledzis.spbstu.java.labs.utils.UtilsKt.log;
 
-/**
- * [Runnable] interface implementer working as a Consumer in a Producer-Consumer multithreading pattern
- */
 public class Consumer extends Thread {
 
     private final Producer mProducer;
