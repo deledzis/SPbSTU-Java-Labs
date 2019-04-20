@@ -35,9 +35,9 @@
             <Font name="Lato Regular" size="14.0" />
         </font>
     </TextField>
-    <Button fx:id="calculateButton" disable="true" layoutX="211.0" layoutY="154.0" mnemonicParsing="false" onAction="#onCalculateButtonClicked" text="Посчитать">
+    <Button fx:id="calculateButton" defaultButton="true" disable="true" layoutX="211.0" layoutY="154.0" mnemonicParsing="false" onAction="#onCalculateButtonClicked" text="Посчитать">
         <font>
-            <Font name="Lato Regular" size="16.0" />
+            <Font name="Lato Regular" size="14.0" />
         </font>
     </Button>
     <Button fx:id="backButton" cancelButton="true" layoutX="14.0" layoutY="9.0" mnemonicParsing="false" onAction="#onBackButtonClicked" text="←" textAlignment="CENTER">

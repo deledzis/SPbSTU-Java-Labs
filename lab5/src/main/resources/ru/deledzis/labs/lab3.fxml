@@ -29,9 +29,9 @@
             <Font name="Lato Regular" size="14.0" />
         </font>
     </TextField>
-    <Button fx:id="runButton" disable="true" layoutX="340.0" layoutY="65.0" mnemonicParsing="false" onAction="#onRunButtonClicked" prefHeight="30.0" prefWidth="110.0" text="Пуск" textAlignment="CENTER">
+    <Button fx:id="runButton" defaultButton="true" disable="true" layoutX="340.0" layoutY="65.0" mnemonicParsing="false" onAction="#onRunButtonClicked" prefHeight="30.0" prefWidth="110.0" text="Пуск" textAlignment="CENTER">
         <font>
-            <Font name="Lato Regular" size="13.0" />
+            <Font name="Lato Regular" size="14.0" />
         </font></Button>
     <Button fx:id="backButton" cancelButton="true" layoutX="14.0" layoutY="9.0" mnemonicParsing="false" onAction="#onBackButtonClicked" text="←" textAlignment="CENTER">
         <font>

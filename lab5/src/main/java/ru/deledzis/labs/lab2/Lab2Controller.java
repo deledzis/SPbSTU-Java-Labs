@@ -49,6 +49,7 @@ public class Lab2Controller implements Initializable {
 
     @FXML
     private void onPrintButtonClicked(ActionEvent actionEvent) {
+        resultTextArea.clear();
         int arraySize;
         try {
             arraySize = Integer.parseInt(countText.getText());
@@ -94,7 +95,8 @@ public class Lab2Controller implements Initializable {
                         .append("is a").append(" ").append(product.whoAmI()).append('\n');
             }
             products[i] = product;
-            productsSb.append("Product #").append(i).append(" ").append("is a").append(" ").append(product.whoAmI()).append('\n');
+            productsSb.append("Product #").append(i).append(" ")
+                    .append("is a").append(" ").append(product.whoAmI()).append('\n');
         }
 
         productsSb.append('\n').append("============").append('\n');
