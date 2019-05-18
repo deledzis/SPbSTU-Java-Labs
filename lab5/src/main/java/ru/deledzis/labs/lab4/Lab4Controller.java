@@ -47,7 +47,8 @@ public class Lab4Controller implements Initializable {
         runButton.disableProperty().bind(threadsPropertyEmpty.or(linesPropertyEmpty));
     }
 
-    public void onRunButtonClicked(ActionEvent actionEvent) {
+    @FXML
+    private void onRunButtonClicked(ActionEvent actionEvent) {
         int threadsCount;
         try {
             threadsCount = Integer.parseInt(threadsCountText.getText());

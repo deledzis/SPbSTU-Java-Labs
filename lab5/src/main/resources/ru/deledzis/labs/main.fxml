@@ -11,12 +11,12 @@
          <Font name="Lato Black" size="18.0" />
       </font>
    </Label>
-   <Button fx:id="lab1Button" layoutX="20" layoutY="160.0" mnemonicParsing="false" onAction="#startLab1" prefHeight="40.0" prefWidth="100.0" text="Lab 1" textAlignment="CENTER">
+   <Button fx:id="lab1Button" layoutX="20" layoutY="160.0" mnemonicParsing="false" onAction="#startLab1" prefHeight="40.0" prefWidth="100.0" text="ТУРБО FLEX" textAlignment="CENTER">
       <font>
          <Font name="Lato Regular" size="16.0" />
       </font>
    </Button>
-   <Button fx:id="lab2Button" layoutX="140.0" layoutY="160.0" mnemonicParsing="false" onAction="#startLab2" prefHeight="40.0" prefWidth="100.0" text="Lab 2" textAlignment="CENTER">
+   <Button fx:id="lab2Button" layoutX="140.0" layoutY="160.0" mnemonicParsing="false" onAction="#startLab2" prefHeight="40.0" prefWidth="100.0" text="FLEX" textAlignment="CENTER">
       <font>
          <Font name="Lato Regular" size="16.0" />
       </font>
